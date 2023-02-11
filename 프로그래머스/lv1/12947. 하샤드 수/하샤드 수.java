@@ -3,11 +3,8 @@ class Solution {
         boolean answer = true;
         int k=x;
         int sum=0;
-        while(true){
+        while(x>0){
             sum+=x%10;
-            if(x<1){
-                break;
-            }
             x=x/10;
         }     
         if(k%sum==0){
