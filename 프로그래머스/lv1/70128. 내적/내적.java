@@ -5,10 +5,8 @@ class Solution {
         
         for(int i=0;i<a.length;i++){
             arr[i]=a[i]*b[i];
-        }
-        for(int i=0;i<a.length;i++){
             answer+=arr[i];
-        }
+        }        
         return answer;
     }
 }
