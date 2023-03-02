@@ -1,9 +1,9 @@
 class Solution {
     public int solution(int n) {
-        int answer = 0;
+        int answer = 1;
     
         if(n<3){
-            return 1;
+            return answer;
         }
         for(int i=1;i<=n/2+1 ; i++){
             int result =0;
@@ -17,6 +17,6 @@ class Solution {
                 }
             }
         }
-        return answer+1;
+        return answer;
     }
 }
