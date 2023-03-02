@@ -1,22 +1,21 @@
-import java.util.Stack;
-
+import java.util.*;
 class Solution
 {
     public int solution(String s)
     {
-        int answer = -1;
-        Stack<Character> stack = new Stack<>();
-        //1. 문자제거하기
-        for (int i=0; i < s.length(); i++){
-            char c = s.charAt(i);
-            if(!stack.isEmpty() && stack.peek() == c){
+
+        Stack <Character> stack = new Stack<>();
+        
+        for(char c : s.toCharArray()){
+            if(stack.size()==0){
+                stack.push(c);
+            }else if(stack.peek()==c){
                 stack.pop();
             }else{
                 stack.push(c);
             }
-
         }
-        answer = (stack.size() == 0) ? 1 : 0;
-        return answer;
+    
+        return stack.size()==0 ? 1:0;
     }
 }
