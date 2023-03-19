@@ -1,2 +1,2 @@
-# Programmers
-✍️Repository for recording Programmers Algorithm problem solving
+# Programmers / Baekjoon
+✍️Repository for recording Programmers/Baekjoon Algorithm problem solving
