@@ -1,19 +1,15 @@
+ 
 import java.util.*;
-import java.util.HashSet;
 public class Main {
     public static void main(String[] args) {
-
         Scanner sc= new Scanner(System.in);
 
-        int a=sc.nextInt();
-        int b=sc.nextInt();
+        int A =sc.nextInt();
+        int B =sc.nextInt();
 
-        a=(a%10*100) + (a%100-a%10) + (a/100);
-        b=(b%10*100) + (b%100-b%10) + (b/100);
-
-        int answer=Math.max(a,b);
-
-
-       System.out.println(answer);
-	}
+        A=A%10*100+A/10%10*10+A/100;
+        B=B%10*100+B/10%10*10+B/100;
+        
+        System.out.println(Math.max(A,B));
+    }
 }
