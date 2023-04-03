@@ -1,15 +1,15 @@
-import java.util.*;
 class Solution {
-    public long solution(long n) {       
-        double result=Math.sqrt(n);
-        double a=Math.pow((result+1),2);
-        double k=Math.floor(result);
-        double b=result/k;
-        if(b==1.0){
-            return (long)(a);
+    public long solution(long n) {
+        long answer = 0;
+            
+      
+        
+        if(Math.pow((int)Math.sqrt(n),2)==n){
+            answer=(long)Math.pow((int)Math.sqrt(n)+1,2);
         }else{
-            return -1;
+            answer=-1;
         }
-       
+        
+        return answer;
     }
 }
