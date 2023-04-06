@@ -1,24 +1,20 @@
 import java.util.*;
 class Solution {
-    public int[] solution(int[] numbers) {
-        ArrayList<Integer> alist =new ArrayList<Integer>();
+    public int[] solution(int[] numbers) {   
+        HashSet<Integer> set =new HashSet<>();
         
-        for(int i=0;i<numbers.length;i++){
+        for(int i=0;i<numbers.length-1;i++){
             for(int j=i+1;j<numbers.length;j++){
-                int temp=numbers[i]+numbers[j];
-                if(!alist.contains(temp)){
-                    alist.add(temp);
-                }
+                set.add(numbers[i]+numbers[j]);
             }
         }
-        
-        int size=0;
-        int[] answer = new int [alist.size()];
-        
-        for(int num:alist){
-            answer[size++]=num;
+        int[] answer = new int[set.size()];
+        int a=0;
+        for(int i:set){
+            answer[a++]=i;
         }
         Arrays.sort(answer);
+        
         return answer;
     }
 }
