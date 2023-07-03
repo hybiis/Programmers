@@ -1,20 +1,17 @@
 import java.util.*;
 class Solution {
     public int solution(int[] nums) {
+        int answer = 0;
+        HashSet<Integer> set= new HashSet<>();
         
-        ArrayList <Integer> alist =new ArrayList <Integer>();
-        
-         for(int i : nums){
-                if(!alist.contains(i)){
-                    alist.add(i);
-                }
-            }
-        
-        if(nums.length/2 <= alist.size()){
-            return nums.length/2;
-        }else{
-            return alist.size();
+        for(int i : nums){
+            set.add(i);
         }
-
+        if(set.size()>nums.length/2){
+            answer=nums.length/2;
+        }else{
+            answer=set.size();
+        }
+        return answer;
     }
 }
