@@ -1,19 +1,21 @@
 import java.util.*;
+
 class Solution {
     public String solution(String s) {
         String answer = "";
         
-        String arr[] =s.split(" ");
-        int intarr[]=new int[arr.length];
-        int a=0;
-        
-        for(String i : arr){
-            intarr[a++]=Integer.parseInt(i);
+        String arr[] = s.split(" ");
+        int intarr[] = new int [arr.length];
+        for( int i=0;i<arr.length;i++){
+                       
+            intarr[i]=Integer.valueOf(arr[i]);
+                 
         }
         
         Arrays.sort(intarr);
         
-        answer=Integer.toString(intarr[0])+" "+Integer.toString(intarr[intarr.length-1]);
+        answer = String.valueOf(intarr[0])+" "+String.valueOf(intarr[arr.length-1]);
+        
         return answer;
     }
 }
