@@ -1,43 +1,37 @@
-import java.util.LinkedList;
-import java.util.Queue;
-
+import java.util.*;
 class Solution {
     public int solution(int[][] maps) {
-        boolean[][] isChecked = new boolean[maps.length][maps[0].length];
-        int[][] distanceMap = new int[maps.length][maps[0].length];
+        
+int rows = maps.length;
+        int cols = maps[0].length;
 
-        bfs(maps, isChecked, distanceMap);
+        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // 상하좌우
 
-        return distanceMap[distanceMap.length - 1][distanceMap[0].length - 1] == 0 ? -1 : distanceMap[distanceMap.length - 1][distanceMap[0].length - 1];
-    }
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{0, 0, 1}); // 시작 위치와 거리
 
-    public void bfs(int[][] maps, boolean[][] isChecked, int[][] distanceMap) {
+        while (!queue.isEmpty()) {
+            int[] current = queue.poll();
+            int row = current[0];
+            int col = current[1];
+            int distance = current[2];
 
-        Queue<int[]> q = new LinkedList();
-        q.add(new int[]{0, 0, 1});
-        isChecked[0][0] = true;
+            if (row == rows - 1 && col == cols - 1) {
+                return distance; // 목적지에 도달한 경우 최단거리 반환
+            }
 
-        while (!q.isEmpty()) {
-            int[] xy = q.poll();
-            int y = xy[1];
-            int x = xy[0];
-            int distance = xy[2];
+            for (int[] dir : directions) {
+                int newRow = row + dir[0];
+                int newCol = col + dir[1];
 
-            distanceMap[y][x] = distance;
-
-            int[][] ALL = {{x - 1, y}, {x + 1, y}, {x, y + 1}, {x, y - 1}};
-
-            for (int[] XY : ALL) {
-                int X = XY[0];
-                int Y = XY[1];
-                if ((0 <= X && X < maps[0].length)
-                        && (0 <= Y && Y < maps.length)
-                        && (maps[Y][X] == 1)
-                        && (isChecked[Y][X] == false)) {
-                    q.add(new int[]{X, Y, distance + 1});
-                    isChecked[Y][X] = true;
+                if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && maps[newRow][newCol] == 1) {
+                    maps[newRow][newCol] = 0; // 방문한 위치는 재방문하지 않도록 표시
+                    queue.offer(new int[]{newRow, newCol, distance + 1});
                 }
             }
         }
+
+        return -1; // 목적지에 도달하지 못한 경우
     }
 }
+
