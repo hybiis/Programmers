@@ -1,37 +1,37 @@
 import java.util.*;
 class Solution {
-    public int solution(int[][] maps) {
-        
-int rows = maps.length;
+    public int solution(int[][] maps) {  
+        int rows = maps.length;
         int cols = maps[0].length;
+        int[][] move ={{-1,0}, {1,0}, {0,-1}, {0,1}};
+        boolean check [][] = new boolean[maps.length][maps[0].length];
+        
+        Queue <int[]> que = new LinkedList<>();
 
-        int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // 상하좌우
-
-        Queue<int[]> queue = new LinkedList<>();
-        queue.offer(new int[]{0, 0, 1}); // 시작 위치와 거리
-
-        while (!queue.isEmpty()) {
-            int[] current = queue.poll();
-            int row = current[0];
-            int col = current[1];
-            int distance = current[2];
-
-            if (row == rows - 1 && col == cols - 1) {
-                return distance; // 목적지에 도달한 경우 최단거리 반환
+        
+        que.offer(new int[]{0,0,1});
+        
+        while(!que.isEmpty()){
+            int [] road = que.poll();
+            int row = road[0];
+            int col =road[1];
+            int distance = road[2];
+            
+            if(row == rows-1 && col == cols-1){
+                return distance;
             }
-
-            for (int[] dir : directions) {
-                int newRow = row + dir[0];
-                int newCol = col + dir[1];
-
-                if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && maps[newRow][newCol] == 1) {
-                    maps[newRow][newCol] = 0; // 방문한 위치는 재방문하지 않도록 표시
-                    queue.offer(new int[]{newRow, newCol, distance + 1});
+            
+            for(int [] i : move){
+                int newrow = row + i[0];
+                int newcol = col + i[1];
+                if(newrow>=0 && newrow<rows && newcol>=0 && newcol<cols &&maps[newrow][newcol] == 1 ){
+                    maps[newrow][newcol] =0;
+                    que.offer(new int[]{newrow,newcol,distance+1});
                 }
             }
         }
-
-        return -1; // 목적지에 도달하지 못한 경우
+        
+        return -1;
+        
     }
 }
-
