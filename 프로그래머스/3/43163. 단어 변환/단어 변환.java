@@ -1,48 +1,44 @@
 import java.util.*;
 class Solution {
-    static class Node{    
-        String next;
+    class Node{
+        String start;
         int edge;
-        
-        public Node(String next, int edge){
-            this.next = next;
+        public Node(String start,int edge){
+            this.start = start;
             this.edge = edge;
         }
     }
-    
     public int solution(String begin, String target, String[] words) {
-        int answer=0, n=words.length;
-        boolean[] visited = new boolean[n];
-        Queue <Node> que = new LinkedList<>();
+        int answer = 0;
+        Queue<Node> que = new LinkedList<>();
+        boolean visited[] = new boolean [words.length];
         
         que.add(new Node(begin,0));
         
         while(!que.isEmpty()){
             Node cur = que.poll();
             
-            if(cur.next.equals(target)){
-                answer = cur.edge;
-                break;
+            if(cur.start.equals(target)){
+                return cur.edge;
             }
             
-            for(int i=0;i<n;i++){
-                if(isNext(cur.next,words[i]) && !visited[i]){
-                    visited[i] = true;
-                    que.add(new Node(words[i], cur.edge+1));
+            for(int i=0;i<words.length;i++){
+                if(visited[i] ==false && check(cur.start,words[i])){
+                    visited[i]=true;
+                    que.add(new Node(words[i],cur.edge+1));
                 }
             }
-        }
+        } 
         
         return answer;
     }
-    
-    static boolean isNext(String cur, String next){
+    public boolean check(String s, String compare){
         int count = 0;
-        
-        for(int i=0;i<cur.length();i++){
-            if(cur.charAt(i) != next.charAt(i)){
-                if(++count>1) return false;
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)!=compare.charAt(i)){
+                count++;
             }
+            if(count>1) return false;
         }
         return true;
     }
