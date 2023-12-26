@@ -2,8 +2,7 @@ import java.util.*;
 class Solution {
     public int solution(String begin, String target, String[] words) {
         int answer = 0;
-        
-        
+         
         if(Arrays.asList(words).indexOf(target)==-1){
             return 0;
         }
