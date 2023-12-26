@@ -1,36 +1,35 @@
 import java.util.*;
 class Solution {
     public int solution(int[][] maps) {
-        int answer = -1;
-        int n = maps.length;
-        int m = maps[0].length;
-        int dis[][] = {{0,1},{0,-1},{1,0},{-1,0}};
-        Queue<int[]> que = new LinkedList<>();
+        int xy [][] = {{-1,0},{1,0},{0,-1},{0,1}};
+        int start [] = {0,0};
         
-        que.add(new int[]{0,0,1});
+        Queue <int []> que = new LinkedList<>();
+        que.add(new int[] {0,0,1});
         
         while(!que.isEmpty()){
-            int[] arr = que.poll();
-            int row = arr[0];
-            int col = arr[1];
-            int distance = arr[2];
+            int arr[] = que.poll();
+            int x = arr[0];
+            int y = arr[1];
+            int dis = arr[2];
             
-            if(row == n-1 && col == m-1){
-                return distance;
+            if(x==maps.length-1 && y==maps[0].length-1){
+                return dis;
             }
             
             for(int i=0;i<4;i++){
-                int newRow = row + dis[i][0];
-                int newCol = col + dis[i][1];
+                int newx = x + xy[i][0];
+                int newy = y + xy[i][1];
                 
-                if(newRow>=0 && newCol>=0 && newRow<n && newCol<m && maps[newRow][newCol] == 1){
-                    maps[newRow][newCol] = 0;
-                    que.add(new int[]{newRow,newCol,distance+1});
+                if(newx>=0 && newy>=0 && newx<maps.length && newy<maps[0].length && maps[newx][newy]==1){
+                    maps[newx][newy] = 0;
+                    que.add(new int[]{newx,newy,dis+1});
                 }
             }
-        
+            
         }
         
-        return answer;
+        return -1;
     }
+
 }
