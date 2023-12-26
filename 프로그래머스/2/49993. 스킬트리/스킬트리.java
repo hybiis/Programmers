@@ -1,19 +1,28 @@
+import java.util.*;
 class Solution {
     public int solution(String skill, String[] skill_trees) {
         int answer = 0;
         
         for(String s : skill_trees){
-            String str = s.replaceAll("[^"+skill+"]","");
-            
-            if(str.equals("")){
-                answer++;
-            }
-            for(int i =1; i<=skill.length();i++){
-                if(skill.substring(0,i).equals(str)){
-                    answer++;
+            int cnt = 0;
+            boolean tf = true;
+            for(char c : s.toCharArray()){
+                if(cnt == skill.indexOf(c)){
+                    cnt++;
+                }else if(skill.indexOf(c)==-1){
+                    continue;
+                }
+                else{
+                    tf = false;
+                    break;
                 }
             }
+            
+            if(tf == true){
+                answer++;
+            }
         }
+        
         return answer;
     }
 }
