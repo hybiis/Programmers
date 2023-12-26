@@ -1,23 +1,24 @@
+import java.util.*;
 class Solution {
+    boolean check[];
     public int solution(int n, int[][] computers) {
         int answer = 0;
-        boolean[] chk = new boolean[n];
+        check = new boolean[n];
         
         for(int i=0;i<n;i++){
-            if(!chk[i]){
-                dfs(n, computers, chk, i);
+            if(!check[i]){
+                dfs(n,computers,i);
                 answer++;
-            }
+            } 
         }
+        
         return answer;
     }
-    
-    void dfs(int n, int[][] computers, boolean[] chk, int num){
-        chk[num]=true;
-        
+    public void dfs(int n, int[][]computers,int k){
+        check[k] = true;
         for(int i=0;i<n;i++){
-            if(!chk[i] && computers[num][i]==1){
-                dfs(n, computers, chk, i);
+            if(!check[i] && computers[k][i]==1){
+                dfs(n,computers,i);
             }
         }
     }
