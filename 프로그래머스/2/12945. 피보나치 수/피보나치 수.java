@@ -1,14 +1,19 @@
 import java.util.*;
 class Solution {
-    public int solution(int n) {
-        int answer = 0;
-        int arr[] = new int[n+1];
-        arr[0]=0;
-        arr[1]=1;
-        for(int i=2;i<=n;i++){
-            arr[i] = (arr[i-1]+arr[i-2])%1234567;
-        }
+    long dp[];
+    public long fibo(int n){      
+        if(n==0) return 0;
+        if(n==1) return 1;
         
-        return arr[n];
+        if(dp[n]!=0) return dp[n];
+        
+        dp[n] = (fibo(n-1)+fibo(n-2))%1234567;
+        
+        return dp[n];
     }
+    
+    public int solution(int n) {
+        dp = new long[n+1];     
+        return (int)fibo(n);
+    }  
 }
