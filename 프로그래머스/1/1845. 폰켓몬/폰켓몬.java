@@ -2,19 +2,18 @@ import java.util.*;
 class Solution {
     public int solution(int[] nums) {
         int answer = 0;
+        Set<Integer> set = new HashSet<>();
         
-        HashSet<Integer> set = new HashSet<>();
-        
-        for(int i : nums){
+        for(int i:nums){
             set.add(i);
         }
         
-        if(set.size()>nums.length/2){
-            return nums.length/2;
+        int k = nums.length/2;
+        if(k>set.size()){
+            return set.size();
+        }else{
+            answer = k;
         }
-        
-        answer = set.size();
-        
         return answer;
     }
 }
